@@ -1,0 +1,19 @@
+<customlist scriptid="customlist_ds_variance_types">
+  <description></description>
+  <isinactive>F</isinactive>
+  <ismatrixoption>F</ismatrixoption>
+  <isordered>T</isordered>
+  <name>[DS] - Variance Types</name>
+  <customvalues>
+    <customvalue scriptid="val_2657453_5294158_sb1_256">
+      <abbreviation>S</abbreviation>
+      <isinactive>F</isinactive>
+      <value>Sales Tax Variance</value>
+    </customvalue>
+    <customvalue scriptid="val_2657454_5294158_sb1_566">
+      <abbreviation>P</abbreviation>
+      <isinactive>F</isinactive>
+      <value>Freight</value>
+    </customvalue>
+  </customvalues>
+</customlist>

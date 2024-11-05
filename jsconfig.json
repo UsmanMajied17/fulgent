@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "checkJs": false,
+    "strict": false,
+    "alwaysStrict": false,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "target": "es2019",
+    "module": "es2015",
+    "paths": {
+      "*": [
+        "./src/"
+      ],
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    ".vscode",
+    ".nuxt",
+    "coverage",
+    "jspm_packages",
+    "tmp",
+    "temp",
+    "bower_components",
+    ".npm",
+    ".yarn"
+  ],
+  "typeAcquisition": {
+    "enable": true
+  }
+}

@@ -1,0 +1,34 @@
+<customlist scriptid="customlist_dt_je_type">
+  <description></description>
+  <isinactive>F</isinactive>
+  <ismatrixoption>F</ismatrixoption>
+  <isordered>T</isordered>
+  <name>JE TYPE</name>
+  <customvalues>
+    <customvalue scriptid="val_2657781_5294158_sb1_353">
+      <abbreviation>D</abbreviation>
+      <isinactive>F</isinactive>
+      <value>Depreciation</value>
+    </customvalue>
+    <customvalue scriptid="val_2657782_5294158_sb1_567">
+      <abbreviation>D</abbreviation>
+      <isinactive>F</isinactive>
+      <value>Disposal</value>
+    </customvalue>
+    <customvalue scriptid="val_2657783_5294158_sb1_943">
+      <abbreviation>T</abbreviation>
+      <isinactive>F</isinactive>
+      <value>Transfer</value>
+    </customvalue>
+    <customvalue scriptid="val_2657827_5294158_sb1_758">
+      <abbreviation>A</abbreviation>
+      <isinactive>F</isinactive>
+      <value>Acquisition</value>
+    </customvalue>
+    <customvalue scriptid="val_2657828_5294158_sb1_594">
+      <abbreviation></abbreviation>
+      <isinactive>F</isinactive>
+      <value>Write-Off</value>
+    </customvalue>
+  </customvalues>
+</customlist>

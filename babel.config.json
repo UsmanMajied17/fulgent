@@ -1,0 +1,26 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": true
+        }
+      }
+    ]
+  ],
+  "overrides": [
+    {
+      "test": "./src/",
+      "plugins": [
+        [
+          "babel-plugin-preserve-comment-header",
+          {
+            "pattern": "@NApiVersion"
+          }
+        ],
+        "transform-es2015-modules-simple-desctructure-amd"
+      ]
+    }
+  ]
+}

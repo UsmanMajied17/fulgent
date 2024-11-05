@@ -1,0 +1,20 @@
+#Ignore dist files
+dist/**
+.
+
+#Ignore src/**/third_party filesS
+src/**/third_party
+src/**/lib/*
+src/**/templates/*
+src/**/frontend/*
+
+#Ignore docs files
+docs
+#Ignore root js files
+/*.js
+
+__tests__
+
+gulp
+
+#Ignore the libs folder.

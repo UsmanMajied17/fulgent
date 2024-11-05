@@ -1,0 +1,38 @@
+#  Template NodeJS build
+
+#  This template allows you to validate your NodeJS code.
+#  The workflow allows running tests and code linting on the default branch.
+image: skumail/suitecloud-cli:1.2.1-alpine
+
+pipelines:
+  default:
+
+        - step:
+            name: Running npm install for Unified Connector Code.
+            caches:
+              - node
+            script:
+              - npm install
+        - step:
+            name: Build & Test Unified Connector Code.
+            caches:
+              - node
+            script:
+              - npm install -g @oracle/suitecloud-cli
+              - npx suitecloud account:savetoken -account {ACCOUNT_ID} -authid DEV_ACCOUNT -tokenid {TOKEN_ID} -tokensecret {TOKEN_SECRET}
+              - npm run build
+            artifacts:
+              - dist/**
+              - reports/*.txt
+        - step:
+            name: Deploy SuiteCloud Project
+            trigger: manual
+            script:
+              - suitecloud account:savetoken -account {ACCOUNT_ID} -authid DEV_ACCOUNT -tokenid {TOKEN_ID} -tokensecret {TOKEN_SECRET}
+              - npm run deploy
+  branches:
+     '{development}':
+      - step:
+          name: Creating Automating Pull request
+          script:
+               - echo 'Creating Pull Request'

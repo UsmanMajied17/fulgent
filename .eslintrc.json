@@ -1,0 +1,29 @@
+{
+  "extends": "google",
+  "plugins": [
+    "filenames"
+  ],
+  "env": {
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "rules": {
+    "filenames/match-regex": [
+      "error",
+      "^f3_[a-z0-9_]+$",
+      true
+    ],
+    "import/no-unresolved": "off",
+    "import/no-extraneous-dependencies": "off",
+    "strict": "off",
+    "max-len": [
+      1,
+      160,
+      4
+    ],
+    "linebreak-style": 0
+  }
+}
