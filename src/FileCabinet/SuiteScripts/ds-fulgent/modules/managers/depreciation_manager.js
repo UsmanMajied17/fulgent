@@ -346,6 +346,8 @@ Order By depHistoty.custrecord_deprhistdate DESC`;
   const result = {};
   const costObj = {};
   const depreciationObj = {};
+  const netBookValueObj = {};
+  const assetTypes = [];
   const subsidiaryNames = getSubsidiaryNames(subsidiaries);
   if (results?.length > 0) {
     // group by asset types
@@ -354,6 +356,9 @@ Order By depHistoty.custrecord_deprhistdate DESC`;
     groupedData.forEach((group) => {
       const {assetGrouping, assettype: assetType} = group;
       costObj[assetType] = {};
+      depreciationObj[assetType] = {};
+      netBookValueObj[assetType] = {};
+      assetTypes.push(assetType);
       let beginningBalance = 0; let additions = 0; let disposals = 0; const transfers = 0; let endingBalance = 0;
       const depbeginningBalance = 0; const depAdditions = 0; let depDisposals = 0; const depTransfers = 0; const depEndingBalance = 0;
       log.debug('beginningStats', {beginningBalance, additions, disposals, transfers, endingBalance});
@@ -409,9 +414,37 @@ Order By depHistoty.custrecord_deprhistdate DESC`;
     log.audit('costObj', costObj);
   }
   result.costObj = costObj;
+  result.depreciationObj = depreciationObj;
   result.subsidiaries = subsidiaryNames;
   result.fromDate = startDate;
   result.toDate = endDate;
+
+  // calculate net book value
+  assetTypes.forEach((assetType) => {
+    const cost = parseFloat(costObj[assetType].endingBalance);
+    const depreciation = parseFloat(depreciationObj[assetType].endingBalance);
+    const netBookValue = cost - depreciation;
+    netBookValueObj[assetType] = netBookValue.toFixed(2);
+
+    const beginningBalance = parseFloat(costObj[assetType].beginningBalance);
+    const additions = parseFloat(costObj[assetType].additions);
+    const disposals = parseFloat(costObj[assetType].disposals);
+    const transfers = parseFloat(costObj[assetType].transfers);
+    const endingBalance = parseFloat(costObj[assetType].endingBalance);
+
+    const depreciationBeginningBalance = parseFloat(depreciationObj[assetType].beginningBalance);
+    const depreciationAdditions = parseFloat(depreciationObj[assetType].additions);
+    const depreciationDisposals = parseFloat(depreciationObj[assetType].disposals);
+    const depreciationTransfers = parseFloat(depreciationObj[assetType].transfers);
+    const depreciationEndingBalance = parseFloat(depreciationObj[assetType].endingBalance);
+    netBookValueObj[assetType].beginningBalance = (beginningBalance - depreciationBeginningBalance).toFixed(2);
+    netBookValueObj[assetType].additions = (additions - depreciationAdditions).toFixed(2);
+    netBookValueObj[assetType].disposals = (disposals - depreciationDisposals).toFixed(2);
+    netBookValueObj[assetType].transfers = (transfers - depreciationTransfers).toFixed(2);
+    netBookValueObj[assetType].endingBalance = (endingBalance - depreciationEndingBalance).toFixed(2);
+  });
+  result.netBookValueObj = netBookValueObj;
+  log.audit('result', result);
   return result;
 };
 export default {
